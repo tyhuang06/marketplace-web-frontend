@@ -1,7 +1,13 @@
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import AllProductsPage from './pages/products/AllProductsPage';
+
 function App() {
 	return (
 		<div className="App">
-			<h1>React App</h1>
+			<Routes>
+				<Route path="/" element={<AllProductsPage />} />
+			</Routes>
 		</div>
 	);
 }
