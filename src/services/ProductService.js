@@ -19,8 +19,26 @@ const getAllProducts = async () => {
 	return response.data;
 };
 
+const getProductById = async (pid) => {
+	console.log('triggerd request');
+	const config = {
+		params: {
+			id: pid,
+			lang: 'en-US',
+			store: 'US',
+			sizeSchema: 'US',
+			currency: 'USD',
+		},
+	};
+
+	const response = await rapidApi.get(`/products/v3/detail`, config);
+	console.log(response);
+	return response.data;
+};
+
 const ProductService = {
 	getAllProducts,
+	getProductById,
 };
 
 export default ProductService;

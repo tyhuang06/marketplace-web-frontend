@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
 	Card,
 	CardBody,
@@ -32,9 +33,11 @@ const ProductCard = ({ product }) => {
 			<Divider />
 			<CardFooter>
 				<ButtonGroup spacing="2">
-					<Button variant="solid" colorScheme="blue">
-						Buy used
-					</Button>
+					<Link to={`/details/${product.id}`}>
+						<Button variant="solid" colorScheme="blue">
+							Buy used
+						</Button>
+					</Link>
 					<Button variant="ghost" colorScheme="blue">
 						Buy new
 					</Button>
