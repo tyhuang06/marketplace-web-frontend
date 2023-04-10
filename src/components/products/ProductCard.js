@@ -12,8 +12,11 @@ import {
 	ButtonGroup,
 	Button,
 } from '@chakra-ui/react';
+import { UserState } from '../../context/UserProvider';
 
 const ProductCard = ({ product }) => {
+	const { user } = UserState();
+
 	return (
 		<Card maxW="sm">
 			<CardBody>
@@ -37,6 +40,15 @@ const ProductCard = ({ product }) => {
 						<Button variant="solid" colorScheme="blue">
 							View Details
 						</Button>
+						{user && user.isSeller && (
+							<Button
+								variant="ghost"
+								colorScheme="blue"
+								className="ml-2"
+							>
+								Add to Store
+							</Button>
+						)}
 					</Link>
 				</ButtonGroup>
 			</CardFooter>

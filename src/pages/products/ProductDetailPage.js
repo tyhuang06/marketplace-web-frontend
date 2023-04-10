@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Container, Image, Stack, Text, Heading } from '@chakra-ui/react';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import parse from 'html-react-parser';
 import ProductService from '../../services/ProductService';
 import UsedProductsList from '../../components/products/UsedProductsList';
@@ -24,7 +25,10 @@ const ProductDetailPage = () => {
 
 	return (
 		<Container maxW="1024px">
-			<Link to="/">View all Products</Link>
+			<Link to="/" className="text-xl mb-2 flex items-center">
+				<ArrowLeftIcon className="w-6 h-6 mr-2" />
+				<Text>View all Products</Text>
+			</Link>
 			{loading ? (
 				<p>Loading...</p>
 			) : (

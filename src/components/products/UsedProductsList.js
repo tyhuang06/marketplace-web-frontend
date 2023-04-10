@@ -39,7 +39,10 @@ const UsedProductsList = ({ asosId }) => {
 					<CardBody>
 						<Stack divider={<StackDivider />} spacing="4">
 							{products.map((product) => (
-								<UsedProductInfo product={product} />
+								<UsedProductInfo
+									product={product}
+									key={product._id}
+								/>
 							))}
 						</Stack>
 					</CardBody>

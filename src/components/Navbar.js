@@ -34,6 +34,7 @@ import { UserState } from '../context/UserProvider';
 const Navbar = () => {
 	// Links for the navbar
 	const Links = [
+		{ name: 'All Products', href: '/' },
 		{ name: 'View Sellers', href: '#' },
 		{ name: 'About', href: '#' },
 	];
