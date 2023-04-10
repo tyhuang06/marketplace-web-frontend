@@ -32,25 +32,29 @@ const ProductDetailPage = () => {
 			{loading ? (
 				<p>Loading...</p>
 			) : (
-				<div className="flex flex-row">
-					<div className="">
-						<Image
-							src={`https://${product.media.images[0].url}`}
-							alt={product.name}
-							borderRadius="lg"
-						/>
-						<Stack mt="6" spacing="3">
-							<Heading size="md">{product.name}</Heading>
-							<Text>Brand: {product.brand.name}</Text>
-							<Text>Product Info: </Text>
-							<Text className="pl-4">
-								{parse(product.info.aboutMe)}
-							</Text>
-							<Text>Price: {product.price.current.text}</Text>
-						</Stack>
-					</div>
-					<div className="w-2/5">
-						<UsedProductsList asosId={product.id} />
+				<div className="flex flex-col">
+					<Heading size="lg" className="mb-4">
+						{product.name}
+					</Heading>
+					<div className="flex flex-row">
+						<div className="">
+							<Image
+								src={`https://${product.media.images[0].url}`}
+								alt={product.name}
+								borderRadius="lg"
+							/>
+							<Stack mt="6" spacing="3">
+								<Text>Brand: {product.brand.name}</Text>
+								<Text>Product Info: </Text>
+								<Text className="pl-4">
+									{parse(product.info.aboutMe)}
+								</Text>
+								<Text>Price: {product.price.current.text}</Text>
+							</Stack>
+						</div>
+						<div className="w-2/5">
+							<UsedProductsList asosId={product.id} />
+						</div>
 					</div>
 				</div>
 			)}
