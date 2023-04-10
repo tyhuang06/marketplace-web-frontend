@@ -20,7 +20,6 @@ const getAllProducts = async () => {
 };
 
 const searchProducts = async (searchTerm) => {
-	console.log(searchTerm);
 	const config = {
 		params: {
 			...defaultConfig.params,
@@ -28,14 +27,11 @@ const searchProducts = async (searchTerm) => {
 		},
 	};
 
-	console.log(config);
-
 	const response = await rapidApi.get('/products/v2/list', config);
 	return response.data;
 };
 
 const getProductById = async (pid) => {
-	console.log('triggerd request');
 	const config = {
 		params: {
 			id: pid,
@@ -47,7 +43,6 @@ const getProductById = async (pid) => {
 	};
 
 	const response = await rapidApi.get(`/products/v3/detail`, config);
-	console.log(response);
 	return response.data;
 };
 
