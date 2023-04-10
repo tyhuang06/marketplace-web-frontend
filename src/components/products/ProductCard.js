@@ -35,12 +35,9 @@ const ProductCard = ({ product }) => {
 				<ButtonGroup spacing="2">
 					<Link to={`/details/${product.id}`}>
 						<Button variant="solid" colorScheme="blue">
-							Buy used
+							View Details
 						</Button>
 					</Link>
-					<Button variant="ghost" colorScheme="blue">
-						Buy new
-					</Button>
 				</ButtonGroup>
 			</CardFooter>
 		</Card>

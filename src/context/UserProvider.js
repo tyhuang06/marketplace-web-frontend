@@ -1,9 +1,9 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const UserContext = createContext();
 
-export const UserProvider = ({ children }) => {
+const UserProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const navigate = useNavigate();
 
@@ -12,7 +12,8 @@ export const UserProvider = ({ children }) => {
 		if (userInfo) {
 			setUser(userInfo);
 		} else {
-			navigate('/login');
+			// navigate('/login');
+			console.log('not logged in');
 		}
 	}, [navigate]);
 
@@ -22,3 +23,9 @@ export const UserProvider = ({ children }) => {
 		</UserContext.Provider>
 	);
 };
+
+export const UserState = () => {
+	return useContext(UserContext);
+};
+
+export default UserProvider;
