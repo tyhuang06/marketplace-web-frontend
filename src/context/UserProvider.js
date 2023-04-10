@@ -11,9 +11,6 @@ const UserProvider = ({ children }) => {
 		const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 		if (userInfo) {
 			setUser(userInfo);
-		} else {
-			// navigate('/login');
-			console.log('not logged in');
 		}
 	}, [navigate]);
 

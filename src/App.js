@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import UserProvider from './context/UserProvider';
 import AllProductsPage from './pages/products/AllProductsPage';
 import ProductDetailPage from './pages/products/ProductDetailPage';
+import AuthPage from './pages/AuthPage';
 import Navbar from './components/Navbar';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
 						path="/details/:id"
 						element={<ProductDetailPage />}
 					/>
+					<Route path="/login" element={<AuthPage />} />
 				</Routes>
 			</div>
 		</UserProvider>

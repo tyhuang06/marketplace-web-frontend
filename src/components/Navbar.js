@@ -47,7 +47,8 @@ const Navbar = () => {
 		</Link>
 	);
 
-	const { userInfo } = UserState();
+	const { user } = UserState();
+	const userInfo = user;
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const navigate = useNavigate();
 	const toast = useToast();
@@ -63,7 +64,7 @@ const Navbar = () => {
 					isClosable: true,
 					position: 'bottom',
 				});
-				navigate('/');
+				navigate(0);
 			})
 			.catch((err) => {
 				toast({
@@ -128,7 +129,7 @@ const Navbar = () => {
 								}
 								className="focus:outline-none rounded-full nav-user-btn"
 							>
-								{userInfo ? userInfo.first_name : 'Guest'}
+								{userInfo ? userInfo.username : 'Guest'}
 							</MenuButton>
 							<MenuList>
 								{userInfo ? (
@@ -165,7 +166,7 @@ const Navbar = () => {
 										Log Out
 									</MenuItem>
 								) : (
-									<Link to="/auth">
+									<Link to="/login">
 										<MenuItem
 											icon={
 												<ArrowRightOnRectangleIcon className="w-6 h-6" />
