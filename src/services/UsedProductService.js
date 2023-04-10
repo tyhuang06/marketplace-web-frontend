@@ -2,7 +2,7 @@ import { axiosDefault, jsonConfig } from '../axios';
 
 const createUsedProduct = async (usedProduct) => {
 	const response = await axiosDefault.post(
-		'/usedproducts',
+		'/usedproduct',
 		usedProduct,
 		jsonConfig
 	);
@@ -10,13 +10,13 @@ const createUsedProduct = async (usedProduct) => {
 };
 
 const getUsedProductById = async (id) => {
-	const response = await axiosDefault.get(`/usedproducts/${id}`);
+	const response = await axiosDefault.get(`/usedproduct/${id}`);
 	return response.data;
 };
 
 const updateUsedProduct = async (id, usedProduct) => {
 	const response = await axiosDefault.put(
-		`/usedproducts/${id}`,
+		`/usedproduct/${id}`,
 		usedProduct,
 		jsonConfig
 	);
@@ -24,17 +24,17 @@ const updateUsedProduct = async (id, usedProduct) => {
 };
 
 const deleteUsedProduct = async (id) => {
-	const response = await axiosDefault.delete(`/usedproducts/${id}`);
+	const response = await axiosDefault.delete(`/usedproduct/${id}`);
 	return response.data;
 };
 
 const getUsedProductsByStoreId = async (storeId) => {
-	const response = await axiosDefault.get(`/usedproducts/store/${storeId}`);
+	const response = await axiosDefault.get(`/usedproduct/store/${storeId}`);
 	return response.data;
 };
 
-const getUsedProductByAsosId = async (asosId) => {
-	const response = await axiosDefault.get(`/usedproducts/asos/${asosId}`);
+const getUsedProductsByAsosId = async (asosId) => {
+	const response = await axiosDefault.get(`/usedproduct/asos/${asosId}`);
 	return response.data;
 };
 
@@ -44,7 +44,7 @@ const UsedProductService = {
 	updateUsedProduct,
 	deleteUsedProduct,
 	getUsedProductsByStoreId,
-	getUsedProductByAsosId,
+	getUsedProductsByAsosId,
 };
 
 export default UsedProductService;
