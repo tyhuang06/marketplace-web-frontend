@@ -30,6 +30,7 @@ import {
 } from '@heroicons/react/20/solid';
 import AuthService from '../services/AuthService';
 import { UserState } from '../context/UserProvider';
+import { ShoppingCartIcon } from '@heroicons/react/24/solid';
 
 const Navbar = () => {
 	// Links for the navbar
@@ -179,6 +180,12 @@ const Navbar = () => {
 								)}
 							</MenuList>
 						</Menu>
+						{userInfo ? (
+							<Link to="/cart" className="flex items-center ml-2">
+								<ShoppingCartIcon className="w-8 h-8 mr-2" />
+								Cart
+							</Link>
+						) : null}
 					</Flex>
 				</Flex>
 

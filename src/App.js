@@ -5,6 +5,7 @@ import AllProductsPage from './pages/products/AllProductsPage';
 import ProductDetailPage from './pages/products/ProductDetailPage';
 import SearchProductsPage from './pages/products/SearchProductsPage';
 import AuthPage from './pages/AuthPage';
+import CartPage from './pages/cart/CartPage';
 import Navbar from './components/Navbar';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
 						path="/search/:query"
 						element={<SearchProductsPage />}
 					/>
+					<Route path="/cart" element={<CartPage />} />
 				</Routes>
 			</div>
 		</UserProvider>

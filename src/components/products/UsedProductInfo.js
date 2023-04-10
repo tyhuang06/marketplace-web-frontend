@@ -1,7 +1,36 @@
 import React from 'react';
-import { Box, Heading, Text, Button } from '@chakra-ui/react';
+import { Box, Heading, Text, Button, useToast } from '@chakra-ui/react';
+import { UserState } from '../../context/UserProvider';
+import CartService from '../../services/CartService';
 
 const UsedProductInfo = ({ product }) => {
+	const { user } = UserState();
+
+	const toast = useToast();
+
+	const addToCart = () => {
+		CartService.addToCart(product._id)
+			.then((res) => {
+				toast({
+					title: 'Added to cart',
+					status: 'success',
+					duration: 5000,
+					isClosable: true,
+					position: 'bottom',
+				});
+			})
+			.catch((err) => {
+				toast({
+					title: 'Error!',
+					description: err.response.data,
+					status: 'error',
+					duration: 5000,
+					isClosable: true,
+					position: 'bottom',
+				});
+			});
+	};
+
 	return (
 		<>
 			<Box>
@@ -21,9 +50,16 @@ const UsedProductInfo = ({ product }) => {
 					${product.sellingPrice}
 				</Text>
 			</Box>
-			<Button colorScheme="blue" variant="ghost" className="mt-2">
-				Add to Cart
-			</Button>
+			{user && (
+				<Button
+					colorScheme="blue"
+					variant="ghost"
+					className="mt-2"
+					onClick={addToCart}
+				>
+					Add to Cart
+				</Button>
+			)}
 		</>
 	);
 };
