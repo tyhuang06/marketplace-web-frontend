@@ -8,4 +8,15 @@ const rapidApi = axios.create({
 	},
 });
 
-export default rapidApi;
+const axiosDefault = axios.create({
+	baseURL: process.env.REACT_APP_API_URL,
+	withCredentials: true,
+});
+
+const jsonConfig = {
+	headers: {
+		'Content-Type': 'application/json',
+	},
+};
+
+export { rapidApi, axiosDefault, jsonConfig };

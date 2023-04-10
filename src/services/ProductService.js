@@ -1,4 +1,4 @@
-import rapidApi from '../axios';
+import { rapidApi } from '../axios';
 
 const defaultConfig = {
 	params: {
