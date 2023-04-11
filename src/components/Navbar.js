@@ -68,6 +68,7 @@ const Navbar = () => {
 					position: 'bottom',
 				});
 				navigate('/');
+				navigate(0);
 			})
 			.catch((err) => {
 				toast({
