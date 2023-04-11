@@ -14,6 +14,7 @@ import {
 	useDisclosure,
 	Stack,
 	useToast,
+	Avatar,
 } from '@chakra-ui/react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
@@ -21,7 +22,7 @@ import {
 	XMarkIcon,
 	ChevronDownIcon,
 	DocumentTextIcon,
-	CalendarDaysIcon,
+	UserIcon,
 } from '@heroicons/react/24/outline';
 import {
 	UserCircleIcon,
@@ -66,7 +67,7 @@ const Navbar = () => {
 					isClosable: true,
 					position: 'bottom',
 				});
-				navigate(0);
+				navigate('/');
 			})
 			.catch((err) => {
 				toast({
@@ -120,22 +121,51 @@ const Navbar = () => {
 					</HStack>
 					<Flex alignItems={'center'}>
 						<Menu>
-							<MenuButton
-								as={Button}
-								cursor={'pointer'}
-								leftIcon={
-									<UserCircleIcon className="w-8 h-8" />
-								}
-								rightIcon={
-									<ChevronDownIcon className="w-4 h-4" />
-								}
-								className="focus:outline-none rounded-full nav-user-btn"
-							>
-								{userInfo ? userInfo.username : 'Guest'}
-							</MenuButton>
+							{userInfo ? (
+								<MenuButton
+									as={Button}
+									cursor={'pointer'}
+									leftIcon={
+										<Avatar
+											size="sm"
+											name={userInfo.username}
+											src={userInfo.profilePic}
+										/>
+									}
+									rightIcon={
+										<ChevronDownIcon className="w-4 h-4" />
+									}
+									className="focus:outline-none rounded-full nav-user-btn"
+								>
+									{userInfo.username}
+								</MenuButton>
+							) : (
+								<MenuButton
+									as={Button}
+									cursor={'pointer'}
+									leftIcon={
+										<UserCircleIcon className="w-8 h-8" />
+									}
+									rightIcon={
+										<ChevronDownIcon className="w-4 h-4" />
+									}
+									className="focus:outline-none rounded-full nav-user-btn"
+								>
+									Guest
+								</MenuButton>
+							)}
 							<MenuList>
 								{userInfo ? (
 									<MenuGroup title="Profile">
+										<Link to="/profile">
+											<MenuItem
+												icon={
+													<UserIcon className="w-6 h-6" />
+												}
+											>
+												My Profile
+											</MenuItem>
+										</Link>
 										<Link to="/orders">
 											<MenuItem
 												icon={
@@ -143,15 +173,6 @@ const Navbar = () => {
 												}
 											>
 												My Orders
-											</MenuItem>
-										</Link>
-										<Link to="/appointments">
-											<MenuItem
-												icon={
-													<CalendarDaysIcon className="w-6 h-6" />
-												}
-											>
-												My Appointments
 											</MenuItem>
 										</Link>
 									</MenuGroup>

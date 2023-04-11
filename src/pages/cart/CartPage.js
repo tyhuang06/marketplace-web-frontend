@@ -13,7 +13,6 @@ import CartService from '../../services/CartService';
 import OrderItem from '../../components/orders/OrderItem';
 import { UserState } from '../../context/UserProvider';
 import { useNavigate } from 'react-router-dom';
-import handleAuthError from '../../protect';
 
 const CartPage = () => {
 	const [cart, setCart] = React.useState([]);
@@ -22,6 +21,13 @@ const CartPage = () => {
 	const { user } = UserState();
 
 	const navigate = useNavigate();
+
+	const handleAuthError = (err, navigate) => {
+		if (err.response.status === 401) {
+			localStorage.removeItem('userInfo');
+			navigate('/login');
+		}
+	};
 
 	useEffect(() => {
 		CartService.getCart()

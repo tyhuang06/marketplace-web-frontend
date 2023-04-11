@@ -6,6 +6,7 @@ import ProductDetailPage from './pages/products/ProductDetailPage';
 import SearchProductsPage from './pages/products/SearchProductsPage';
 import AuthPage from './pages/AuthPage';
 import CartPage from './pages/cart/CartPage';
+import ProfilePage from './pages/users/ProfilePage';
 import Navbar from './components/Navbar';
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
 						element={<SearchProductsPage />}
 					/>
 					<Route path="/cart" element={<CartPage />} />
+					<Route path="/profile" element={<ProfilePage />} />
+					<Route path="/profile/:id" element={<ProfilePage />} />
 				</Routes>
 			</div>
 		</UserProvider>
