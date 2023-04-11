@@ -1,5 +1,10 @@
 import { axiosDefault, jsonConfig } from '../axios';
 
+const getAllStores = async () => {
+	const response = await axiosDefault.get('/store');
+	return response.data;
+};
+
 const createStore = async (store) => {
 	const response = await axiosDefault.post('/store', store, jsonConfig);
 	return response.data;
@@ -21,6 +26,7 @@ const updateStore = async (id, store) => {
 };
 
 const StoreService = {
+	getAllStores,
 	createStore,
 	getStoreById,
 	getStoreByOwnerId,
