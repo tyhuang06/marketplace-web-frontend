@@ -3,14 +3,15 @@ import {
 	Card,
 	CardBody,
 	CardHeader,
-	Heading,
+	Button,
 	Stack,
 	StackDivider,
 } from '@chakra-ui/react';
 import UsedProductService from '../../services/UsedProductService';
 import UsedProductInfo from './UsedProductInfo';
 
-const SellerProductsList = ({ storeId }) => {
+const SellerProductsList = (props) => {
+	const { storeId, isSelf } = props;
 	const [products, setProducts] = React.useState([]);
 	const [loading, setLoading] = React.useState(true);
 
@@ -27,26 +28,22 @@ const SellerProductsList = ({ storeId }) => {
 	}, [storeId]);
 
 	return (
-		<Card>
-			<CardHeader>
-				<Heading size="md">All Products</Heading>
-			</CardHeader>
+		<>
+			{!loading &&
+				products.map((product) => (
+					<Card key={product._id} className="mb-2">
+						<CardHeader>
+							{isSelf ? <Button>Edit Product</Button> : null}
+						</CardHeader>
 
-			<CardBody>
-				{loading ? (
-					<p>Loading...</p>
-				) : (
-					<Stack divider={<StackDivider />} spacing="4">
-						{products.map((product) => (
-							<UsedProductInfo
-								product={product}
-								key={product._id}
-							/>
-						))}
-					</Stack>
-				)}
-			</CardBody>
-		</Card>
+						<CardBody>
+							<Stack divider={<StackDivider />} spacing="4">
+								<UsedProductInfo product={product} />
+							</Stack>
+						</CardBody>
+					</Card>
+				))}
+		</>
 	);
 };
 

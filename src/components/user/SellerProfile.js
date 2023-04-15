@@ -51,6 +51,7 @@ const SellerProfile = (props) => {
 						<TabPanel>
 							<SellerProductsList
 								storeId={profileUser.storeInfo}
+								isSelf={isSelf}
 							/>
 						</TabPanel>
 						<TabPanel>
