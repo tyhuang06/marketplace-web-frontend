@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Button, Container } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import UserService from '../../services/UserService';
 import BuyerProfile from '../../components/user/BuyerProfile';
@@ -34,13 +35,18 @@ const ProfilePage = () => {
 	}, [id]);
 
 	return (
-		<>
+		<Container>
+			{selfProfile && (
+				<Button colorScheme="blue" variant="ghost" className="mb-2">
+					Edit Profile
+				</Button>
+			)}
 			{!loading && profileUser.isSeller ? (
 				<SellerProfile profileUser={profileUser} isSelf={selfProfile} />
 			) : (
 				<BuyerProfile profileUser={profileUser} isSelf={selfProfile} />
 			)}
-		</>
+		</Container>
 	);
 };
 

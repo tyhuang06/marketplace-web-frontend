@@ -2,14 +2,12 @@ import React from 'react';
 import {
 	Avatar,
 	Box,
-	Container,
 	Heading,
 	Tabs,
 	TabList,
 	Tab,
 	TabPanel,
 	TabPanels,
-	Button,
 	Stack,
 	Text,
 } from '@chakra-ui/react';
@@ -18,7 +16,7 @@ const BuyerProfile = (props) => {
 	const { profileUser, isSelf } = props;
 
 	return (
-		<Container>
+		<>
 			<Box className="flex items-center p-2 bg-slate-50">
 				<Avatar
 					size="xl"
@@ -29,14 +27,6 @@ const BuyerProfile = (props) => {
 					<Heading>{profileUser.username}</Heading>
 					{isSelf && <Text>{profileUser.email}</Text>}
 				</Stack>
-
-				{isSelf && (
-					<div className="ml-auto">
-						<Button colorScheme="blue" variant="ghost">
-							Edit Profile
-						</Button>
-					</div>
-				)}
 			</Box>
 
 			<Box className="mt-8">
@@ -55,7 +45,7 @@ const BuyerProfile = (props) => {
 					</TabPanels>
 				</Tabs>
 			</Box>
-		</Container>
+		</>
 	);
 };
 
