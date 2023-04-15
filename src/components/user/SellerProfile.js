@@ -13,6 +13,7 @@ import {
 	Stack,
 	Text,
 } from '@chakra-ui/react';
+import SellerProductsList from '../products/SellerProductsList';
 
 const SellerProfile = (props) => {
 	const { profileUser, isSelf } = props;
@@ -48,7 +49,9 @@ const SellerProfile = (props) => {
 					</TabList>
 					<TabPanels>
 						<TabPanel>
-							<p>products list</p>
+							<SellerProductsList
+								storeId={profileUser.storeInfo}
+							/>
 						</TabPanel>
 						<TabPanel>
 							<p>reviews</p>

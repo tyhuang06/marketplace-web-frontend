@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Heading, Text, Button, useToast } from '@chakra-ui/react';
+import { Box, Heading, Text, Button, useToast, Link } from '@chakra-ui/react';
+import { Link as ReachLink } from 'react-router-dom';
 import { UserState } from '../../context/UserProvider';
 import CartService from '../../services/CartService';
 
@@ -38,7 +39,15 @@ const UsedProductInfo = ({ product }) => {
 					{product.name}
 				</Heading>
 				<Text pt="2" fontSize="sm">
-					Sold By: {product.storeId.storeName}
+					Sold By:
+					<Link
+						as={ReachLink}
+						to={`/profile/${product.storeId.owner}`}
+						className=" ml-2"
+						color="blue.600"
+					>
+						{product.storeId.storeName}
+					</Link>
 				</Text>
 				<Text pt="2" fontSize="sm">
 					Condition: {product.condition}
