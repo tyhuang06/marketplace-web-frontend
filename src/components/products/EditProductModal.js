@@ -22,12 +22,12 @@ import {
 import { useNavigate } from 'react-router-dom';
 import UsedProductService from '../../services/UsedProductService';
 
-const CreateUsedProductModal = ({ product }) => {
+const EditProductModal = ({ product }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [name, setName] = useState(product.name);
-	const [sellingPrice, setSellingPrice] = useState(0);
-	const [condition, setCondition] = useState('');
-	const [size, setSize] = useState('');
+	const [sellingPrice, setSellingPrice] = useState(product.sellingPrice);
+	const [condition, setCondition] = useState(product.condition);
+	const [size, setSize] = useState(product.size);
 	const [loading, setLoading] = useState(false);
 
 	const navigate = useNavigate();
@@ -40,55 +40,75 @@ const CreateUsedProductModal = ({ product }) => {
 		e.preventDefault();
 		setLoading(true);
 
-		const usedProduct = {
+		UsedProductService.updateUsedProduct(product._id, {
 			name,
-			asosId: product.id,
 			sellingPrice,
 			condition,
 			size,
-		};
-
-		await UsedProductService.createUsedProduct(usedProduct)
+		})
 			.then((res) => {
 				toast({
-					title: 'Used Product Added!',
+					title: 'Used Product Updated!',
 					status: 'success',
 					duration: 5000,
 					isClosable: true,
 					position: 'bottom',
 				});
 
+				onClose();
 				setLoading(false);
-				navigate('/details/' + product.id);
+				navigate(0);
 			})
 			.catch((err) => {
 				toast({
-					title: 'Error',
-					description: err.response.data.message,
+					title: 'Error updating used product.',
 					status: 'error',
 					duration: 5000,
 					isClosable: true,
 					position: 'bottom',
 				});
 
+				onClose();
 				setLoading(false);
+			});
+	};
+
+	const handleDelete = async (e) => {
+		e.preventDefault();
+		setLoading(true);
+
+		UsedProductService.deleteUsedProduct(product._id)
+			.then((res) => {
+				toast({
+					title: 'Used Product Deleted!',
+					status: 'success',
+					duration: 5000,
+					isClosable: true,
+					position: 'bottom',
+				});
+
+				onClose();
+				setLoading(false);
+				navigate(0);
+			})
+			.catch((err) => {
+				toast({
+					title: 'Error deleting used product.',
+					status: 'error',
+					duration: 5000,
+					isClosable: true,
+					position: 'bottom',
+				});
 			});
 	};
 
 	return (
 		<>
-			<Button
-				variant="ghost"
-				colorScheme="blue"
-				className="ml-2"
-				onClick={onOpen}
-			>
-				Add to Store
-			</Button>
+			<Button onClick={onOpen}>Edit</Button>
 			<Modal isOpen={isOpen} onClose={onClose}>
 				<ModalOverlay />
 				<ModalContent>
-					<ModalHeader>Create Used Product</ModalHeader>
+					<ModalHeader>Update Used Product</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody>
 						<FormControl id="name" isRequired className="mb-2">
@@ -141,12 +161,20 @@ const CreateUsedProductModal = ({ product }) => {
 
 					<ModalFooter>
 						<Button
+							colorScheme="red"
+							mr={3}
+							onClick={handleDelete}
+							isLoading={loading}
+						>
+							Delete
+						</Button>
+						<Button
 							colorScheme="blue"
 							mr={3}
 							onClick={handleSubmit}
 							isLoading={loading}
 						>
-							Add to Store
+							Update
 						</Button>
 						<Button variant="ghost" onClick={onClose}>
 							Cancel
@@ -158,4 +186,4 @@ const CreateUsedProductModal = ({ product }) => {
 	);
 };
 
-export default CreateUsedProductModal;
+export default EditProductModal;

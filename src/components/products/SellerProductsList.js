@@ -3,12 +3,12 @@ import {
 	Card,
 	CardBody,
 	CardHeader,
-	Button,
 	Stack,
 	StackDivider,
 } from '@chakra-ui/react';
 import UsedProductService from '../../services/UsedProductService';
 import UsedProductInfo from './UsedProductInfo';
+import EditProductModal from './EditProductModal';
 
 const SellerProductsList = (props) => {
 	const { storeId, isSelf } = props;
@@ -33,7 +33,9 @@ const SellerProductsList = (props) => {
 				products.map((product) => (
 					<Card key={product._id} className="mb-2">
 						<CardHeader>
-							{isSelf ? <Button>Edit Product</Button> : null}
+							{isSelf ? (
+								<EditProductModal product={product} />
+							) : null}
 						</CardHeader>
 
 						<CardBody>
