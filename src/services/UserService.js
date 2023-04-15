@@ -10,6 +10,11 @@ const getUserById = async (id) => {
 	return response.data;
 };
 
+const updateCurrentUser = async (user) => {
+	const response = await axiosDefault.put('/user', user, jsonConfig);
+	return response.data;
+};
+
 const followSeller = async (sellerId) => {
 	const response = await axiosDefault.post(
 		'/user/follow',
@@ -33,6 +38,7 @@ const UserService = {
 	getUserById,
 	followSeller,
 	unfollowSeller,
+	updateCurrentUser,
 };
 
 export default UserService;

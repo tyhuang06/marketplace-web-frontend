@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import UserService from '../../services/UserService';
 import BuyerProfile from '../../components/user/BuyerProfile';
 import SellerProfile from '../../components/user/SellerProfile';
+import EditProfileModal from '../../components/user/EditProfileModal';
 
 const ProfilePage = () => {
 	const [profileUser, setProfileUser] = useState({});
@@ -36,11 +37,7 @@ const ProfilePage = () => {
 
 	return (
 		<Container>
-			{selfProfile && (
-				<Button colorScheme="blue" variant="ghost" className="mb-2">
-					Edit Profile
-				</Button>
-			)}
+			{selfProfile && <EditProfileModal profileUser={profileUser} />}
 			{!loading && profileUser.isSeller ? (
 				<SellerProfile profileUser={profileUser} isSelf={selfProfile} />
 			) : (
