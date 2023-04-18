@@ -109,7 +109,7 @@ const Navbar = () => {
 						alignItems={'center'}
 						className="text-xl"
 					>
-						<Box className="font-bold">Used Marketplace</Box>
+						<Box className="font-bold">Marketplace</Box>
 						<HStack
 							as={'nav'}
 							spacing={4}
