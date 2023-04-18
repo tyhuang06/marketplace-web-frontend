@@ -10,7 +10,7 @@ import { UserState } from '../../context/UserProvider';
 const ProfilePage = () => {
 	const { user, setUser } = UserState();
 	const [profileUser, setProfileUser] = useState({});
-	const [isFollowing, setIsFollowing] = useState(false);
+	const [isFollowing, setIsFollowing] = useState(true);
 	const [isSelf, setIsSelf] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const { id } = useParams();
@@ -60,6 +60,7 @@ const ProfilePage = () => {
 					position: 'bottom',
 				});
 
+				localStorage.setItem('userInfo', JSON.stringify(res));
 				setUser(res);
 			})
 			.catch((err) => {
@@ -84,6 +85,7 @@ const ProfilePage = () => {
 					position: 'bottom',
 				});
 
+				localStorage.setItem('userInfo', JSON.stringify(res));
 				setUser(res);
 			})
 			.catch((err) => {
@@ -98,24 +100,34 @@ const ProfilePage = () => {
 	};
 
 	return (
-		<Container>
-			{isSelf && <EditProfileModal profileUser={profileUser} />}
-			{!isSelf && !isFollowing && (
-				<Button onClick={handleFollow} className="mb-2">
-					Follow
-				</Button>
+		<>
+			{!loading && (
+				<Container>
+					{isSelf && <EditProfileModal profileUser={profileUser} />}
+					{!isSelf && !isFollowing && (
+						<Button onClick={handleFollow} className="mb-2">
+							Follow
+						</Button>
+					)}
+					{!isSelf && isFollowing && (
+						<Button onClick={handleUnfollow} className="mb-2">
+							Unfollow
+						</Button>
+					)}
+					{profileUser.isSeller ? (
+						<SellerProfile
+							profileUser={profileUser}
+							isSelf={isSelf}
+						/>
+					) : (
+						<BuyerProfile
+							profileUser={profileUser}
+							isSelf={isSelf}
+						/>
+					)}
+				</Container>
 			)}
-			{!isSelf && isFollowing && (
-				<Button onClick={handleUnfollow} className="mb-2">
-					Unfollow
-				</Button>
-			)}
-			{!loading && profileUser.isSeller ? (
-				<SellerProfile profileUser={profileUser} isSelf={isSelf} />
-			) : (
-				<BuyerProfile profileUser={profileUser} isSelf={isSelf} />
-			)}
-		</Container>
+		</>
 	);
 };
 

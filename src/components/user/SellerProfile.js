@@ -12,6 +12,7 @@ import {
 	Text,
 } from '@chakra-ui/react';
 import SellerProductsList from '../products/SellerProductsList';
+import FollowList from './FollowList';
 
 const SellerProfile = (props) => {
 	const { profileUser, isSelf } = props;
@@ -35,6 +36,7 @@ const SellerProfile = (props) => {
 					<TabList>
 						<Tab>Products</Tab>
 						<Tab>Reviews</Tab>
+						<Tab>Following</Tab>
 						<Tab>Followers</Tab>
 					</TabList>
 					<TabPanels>
@@ -48,7 +50,10 @@ const SellerProfile = (props) => {
 							<p>reviews</p>
 						</TabPanel>
 						<TabPanel>
-							<p>Followers</p>
+							<FollowList users={profileUser.following} />
+						</TabPanel>
+						<TabPanel>
+							<FollowList users={profileUser.followers} />
 						</TabPanel>
 					</TabPanels>
 				</Tabs>
