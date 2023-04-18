@@ -41,6 +41,7 @@ const EditProfileModal = ({ profileUser }) => {
 				});
 
 				onClose();
+				localStorage.setItem('userInfo', JSON.stringify(res));
 
 				navigate(0);
 			})
