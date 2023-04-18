@@ -15,7 +15,6 @@ Use ASOS API for all products
 - Not required to login
 - Display all products
 
-
 ## Search Page
 
 - Search for stuff with asos api
@@ -42,5 +41,3 @@ Use ASOS API for all products
 
 - Following/Followers
 - Cancelation rate (todo)
-
-
