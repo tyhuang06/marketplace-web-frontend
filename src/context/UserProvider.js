@@ -21,8 +21,10 @@ const UserProvider = ({ children }) => {
 	);
 };
 
+// export user context
+
 export const UserState = () => {
 	return useContext(UserContext);
 };
 
-export default UserProvider;
+export { UserProvider, UserContext };

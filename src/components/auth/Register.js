@@ -92,9 +92,27 @@ const Register = () => {
 					position: 'bottom',
 				});
 
-				localStorage.setItem('userInfo', JSON.stringify(res));
-
 				return res;
+			})
+			.catch((err) => {
+				toast({
+					title: 'Error!',
+					description: err.response.data,
+					status: 'error',
+					duration: 5000,
+					isClosable: true,
+					position: 'bottom',
+				});
+				setLoading(false);
+			});
+
+		// Login user
+		await AuthService.login({
+			email,
+			password,
+		})
+			.then((res) => {
+				localStorage.setItem('userInfo', JSON.stringify(res));
 			})
 			.catch((err) => {
 				toast({
@@ -138,6 +156,9 @@ const Register = () => {
 						position: 'bottom',
 					});
 				});
+		} else {
+			setLoading(false);
+			navigate('/');
 		}
 	};
 

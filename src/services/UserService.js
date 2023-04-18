@@ -15,19 +15,19 @@ const updateCurrentUser = async (user) => {
 	return response.data;
 };
 
-const followSeller = async (sellerId) => {
+const followUser = async (targetUserId) => {
 	const response = await axiosDefault.post(
 		'/user/follow',
-		{ sellerId },
+		{ targetUserId },
 		jsonConfig
 	);
 	return response.data;
 };
 
-const unfollowSeller = async (sellerId) => {
+const unfollowUser = async (targetUserId) => {
 	const response = await axiosDefault.post(
 		'/user/unfollow',
-		{ sellerId },
+		{ targetUserId },
 		jsonConfig
 	);
 	return response.data;
@@ -36,8 +36,8 @@ const unfollowSeller = async (sellerId) => {
 const UserService = {
 	getCurrentUser,
 	getUserById,
-	followSeller,
-	unfollowSeller,
+	followUser,
+	unfollowUser,
 	updateCurrentUser,
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import UserProvider from './context/UserProvider';
+import { UserProvider } from './context/UserProvider';
 import AllProductsPage from './pages/products/AllProductsPage';
 import ProductDetailPage from './pages/products/ProductDetailPage';
 import SearchProductsPage from './pages/products/SearchProductsPage';
