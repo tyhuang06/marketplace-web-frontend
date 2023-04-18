@@ -7,7 +7,7 @@ const defaultConfig = {
 		categoryId: '4209',
 		limit: '50',
 		country: 'US',
-		sort: 'freshness',
+		sort: 'pricedesc',
 		currency: 'USD',
 		sizeSchema: 'US',
 		lang: 'en-US',

@@ -104,12 +104,12 @@ const ProfilePage = () => {
 			{!loading && (
 				<Container>
 					{isSelf && <EditProfileModal profileUser={profileUser} />}
-					{!isSelf && !isFollowing && (
+					{user && !isSelf && !isFollowing && (
 						<Button onClick={handleFollow} className="mb-2">
 							Follow
 						</Button>
 					)}
-					{!isSelf && isFollowing && (
+					{user && !isSelf && isFollowing && (
 						<Button onClick={handleUnfollow} className="mb-2">
 							Unfollow
 						</Button>

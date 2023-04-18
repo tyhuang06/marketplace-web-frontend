@@ -12,9 +12,11 @@ import {
 	Text,
 } from '@chakra-ui/react';
 import FollowList from './FollowList';
+import { UserState } from '../../context/UserProvider';
 
 const BuyerProfile = (props) => {
 	const { profileUser, isSelf } = props;
+	const { user } = UserState();
 
 	return (
 		<>
@@ -33,17 +35,25 @@ const BuyerProfile = (props) => {
 			<Box className="mt-8">
 				<Tabs isFitted>
 					<TabList>
-						<Tab>Following</Tab>
-						<Tab>Followers</Tab>
+						{user && (
+							<>
+								<Tab>Following</Tab>
+								<Tab>Followers</Tab>
+							</>
+						)}
 						<Tab>Reviews</Tab>
 					</TabList>
 					<TabPanels>
-						<TabPanel>
-							<FollowList users={profileUser.following} />
-						</TabPanel>
-						<TabPanel>
-							<FollowList users={profileUser.followers} />
-						</TabPanel>
+						{user && (
+							<>
+								<TabPanel>
+									<FollowList users={profileUser.following} />
+								</TabPanel>
+								<TabPanel>
+									<FollowList users={profileUser.followers} />
+								</TabPanel>
+							</>
+						)}
 						<TabPanel>
 							<p>reviews</p>
 						</TabPanel>
