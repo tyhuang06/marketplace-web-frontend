@@ -33,32 +33,28 @@ const BuyerProfile = (props) => {
 			</Box>
 
 			<Box className="mt-8">
-				<Tabs isFitted>
-					<TabList>
-						{user && (
-							<>
-								<Tab>Following</Tab>
-								<Tab>Followers</Tab>
-							</>
-						)}
-						<Tab>Reviews</Tab>
-					</TabList>
-					<TabPanels>
-						{user && (
-							<>
-								<TabPanel>
-									<FollowList users={profileUser.following} />
-								</TabPanel>
-								<TabPanel>
-									<FollowList users={profileUser.followers} />
-								</TabPanel>
-							</>
-						)}
-						<TabPanel>
-							<p>reviews</p>
-						</TabPanel>
-					</TabPanels>
-				</Tabs>
+				{user ? (
+					<Tabs isFitted>
+						<TabList>
+							<Tab>Following</Tab>
+							<Tab>Followers</Tab>
+							<Tab>Reviews</Tab>
+						</TabList>
+						<TabPanels>
+							<TabPanel>
+								<FollowList users={profileUser.following} />
+							</TabPanel>
+							<TabPanel>
+								<FollowList users={profileUser.followers} />
+							</TabPanel>
+							<TabPanel>
+								<p>reviews</p>
+							</TabPanel>
+						</TabPanels>
+					</Tabs>
+				) : (
+					<Text>Log in to view this page</Text>
+				)}
 			</Box>
 		</>
 	);

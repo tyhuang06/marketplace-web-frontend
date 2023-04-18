@@ -16,7 +16,6 @@ const FollowList = (props) => {
 
 	return (
 		<>
-			{users.length === 0 && <Text>No users found</Text>}
 			{users.map((targetUser) => (
 				<Card key={targetUser._id} className="mb-2">
 					<CardBody>

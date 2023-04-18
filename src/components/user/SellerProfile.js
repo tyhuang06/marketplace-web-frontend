@@ -34,39 +34,37 @@ const SellerProfile = (props) => {
 			</Box>
 
 			<Box className="mt-8">
-				<Tabs isFitted>
-					<TabList>
-						<Tab>Products</Tab>
-						<Tab>Reviews</Tab>
-						{user && (
-							<>
-								<Tab>Following</Tab>
-								<Tab>Followers</Tab>
-							</>
-						)}
-					</TabList>
-					<TabPanels>
-						<TabPanel>
-							<SellerProductsList
-								storeId={profileUser.storeInfo}
-								isSelf={isSelf}
-							/>
-						</TabPanel>
-						<TabPanel>
-							<p>reviews</p>
-						</TabPanel>
-						{user && (
-							<>
-								<TabPanel>
-									<FollowList users={profileUser.following} />
-								</TabPanel>
-								<TabPanel>
-									<FollowList users={profileUser.followers} />
-								</TabPanel>
-							</>
-						)}
-					</TabPanels>
-				</Tabs>
+				{user ? (
+					<Tabs isFitted>
+						<TabList>
+							<Tab>Products</Tab>
+							<Tab>Reviews</Tab>
+
+							<Tab>Following</Tab>
+							<Tab>Followers</Tab>
+						</TabList>
+						<TabPanels>
+							<TabPanel>
+								<SellerProductsList
+									storeId={profileUser.storeInfo}
+									isSelf={isSelf}
+								/>
+							</TabPanel>
+							<TabPanel>
+								<p>reviews</p>
+							</TabPanel>
+
+							<TabPanel>
+								<FollowList users={profileUser.following} />
+							</TabPanel>
+							<TabPanel>
+								<FollowList users={profileUser.followers} />
+							</TabPanel>
+						</TabPanels>
+					</Tabs>
+				) : (
+					<Text>Log in to view profile details</Text>
+				)}
 			</Box>
 		</>
 	);
